@@ -1,0 +1,527 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E5E661031D0F8FDC007FD396 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E661021D0F8FDC007FD396 /* AppDelegate.swift */; };
+		E5E661051D0F8FDC007FD396 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E661041D0F8FDC007FD396 /* ViewController.swift */; };
+		E5E661081D0F8FDC007FD396 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5E661061D0F8FDC007FD396 /* Main.storyboard */; };
+		E5E6610B1D0F8FDC007FD396 /* CityExpert.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E5E661091D0F8FDC007FD396 /* CityExpert.xcdatamodeld */; };
+		E5E6610D1D0F8FDC007FD396 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5E6610C1D0F8FDC007FD396 /* Assets.xcassets */; };
+		E5E661101D0F8FDC007FD396 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5E6610E1D0F8FDC007FD396 /* LaunchScreen.storyboard */; };
+		E5E6611B1D0F8FDC007FD396 /* CityExpertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E6611A1D0F8FDC007FD396 /* CityExpertTests.swift */; };
+		E5E661261D0F8FDC007FD396 /* CityExpertUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E661251D0F8FDC007FD396 /* CityExpertUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E5E661171D0F8FDC007FD396 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5E660F71D0F8FDC007FD396 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E5E660FE1D0F8FDC007FD396;
+			remoteInfo = CityExpert;
+		};
+		E5E661221D0F8FDC007FD396 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5E660F71D0F8FDC007FD396 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E5E660FE1D0F8FDC007FD396;
+			remoteInfo = CityExpert;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E5E660FF1D0F8FDC007FD396 /* CityExpert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CityExpert.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5E661021D0F8FDC007FD396 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E5E661041D0F8FDC007FD396 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E5E661071D0F8FDC007FD396 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E5E6610A1D0F8FDC007FD396 /* CityExpert.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CityExpert.xcdatamodel; sourceTree = "<group>"; };
+		E5E6610C1D0F8FDC007FD396 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E5E6610F1D0F8FDC007FD396 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E5E661111D0F8FDC007FD396 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E5E661161D0F8FDC007FD396 /* CityExpertTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CityExpertTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5E6611A1D0F8FDC007FD396 /* CityExpertTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityExpertTests.swift; sourceTree = "<group>"; };
+		E5E6611C1D0F8FDC007FD396 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E5E661211D0F8FDC007FD396 /* CityExpertUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CityExpertUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5E661251D0F8FDC007FD396 /* CityExpertUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityExpertUITests.swift; sourceTree = "<group>"; };
+		E5E661271D0F8FDC007FD396 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E5E660FC1D0F8FDC007FD396 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5E661131D0F8FDC007FD396 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5E6611E1D0F8FDC007FD396 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E5E660F61D0F8FDC007FD396 = {
+			isa = PBXGroup;
+			children = (
+				E5E661011D0F8FDC007FD396 /* CityExpert */,
+				E5E661191D0F8FDC007FD396 /* CityExpertTests */,
+				E5E661241D0F8FDC007FD396 /* CityExpertUITests */,
+				E5E661001D0F8FDC007FD396 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E5E661001D0F8FDC007FD396 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E5E660FF1D0F8FDC007FD396 /* CityExpert.app */,
+				E5E661161D0F8FDC007FD396 /* CityExpertTests.xctest */,
+				E5E661211D0F8FDC007FD396 /* CityExpertUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E5E661011D0F8FDC007FD396 /* CityExpert */ = {
+			isa = PBXGroup;
+			children = (
+				E5E661021D0F8FDC007FD396 /* AppDelegate.swift */,
+				E5E661041D0F8FDC007FD396 /* ViewController.swift */,
+				E5E661061D0F8FDC007FD396 /* Main.storyboard */,
+				E5E6610C1D0F8FDC007FD396 /* Assets.xcassets */,
+				E5E6610E1D0F8FDC007FD396 /* LaunchScreen.storyboard */,
+				E5E661111D0F8FDC007FD396 /* Info.plist */,
+				E5E661091D0F8FDC007FD396 /* CityExpert.xcdatamodeld */,
+			);
+			path = CityExpert;
+			sourceTree = "<group>";
+		};
+		E5E661191D0F8FDC007FD396 /* CityExpertTests */ = {
+			isa = PBXGroup;
+			children = (
+				E5E6611A1D0F8FDC007FD396 /* CityExpertTests.swift */,
+				E5E6611C1D0F8FDC007FD396 /* Info.plist */,
+			);
+			path = CityExpertTests;
+			sourceTree = "<group>";
+		};
+		E5E661241D0F8FDC007FD396 /* CityExpertUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E5E661251D0F8FDC007FD396 /* CityExpertUITests.swift */,
+				E5E661271D0F8FDC007FD396 /* Info.plist */,
+			);
+			path = CityExpertUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E5E660FE1D0F8FDC007FD396 /* CityExpert */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E5E6612A1D0F8FDC007FD396 /* Build configuration list for PBXNativeTarget "CityExpert" */;
+			buildPhases = (
+				E5E660FB1D0F8FDC007FD396 /* Sources */,
+				E5E660FC1D0F8FDC007FD396 /* Frameworks */,
+				E5E660FD1D0F8FDC007FD396 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CityExpert;
+			productName = CityExpert;
+			productReference = E5E660FF1D0F8FDC007FD396 /* CityExpert.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E5E661151D0F8FDC007FD396 /* CityExpertTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E5E6612D1D0F8FDC007FD396 /* Build configuration list for PBXNativeTarget "CityExpertTests" */;
+			buildPhases = (
+				E5E661121D0F8FDC007FD396 /* Sources */,
+				E5E661131D0F8FDC007FD396 /* Frameworks */,
+				E5E661141D0F8FDC007FD396 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E5E661181D0F8FDC007FD396 /* PBXTargetDependency */,
+			);
+			name = CityExpertTests;
+			productName = CityExpertTests;
+			productReference = E5E661161D0F8FDC007FD396 /* CityExpertTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E5E661201D0F8FDC007FD396 /* CityExpertUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E5E661301D0F8FDC007FD396 /* Build configuration list for PBXNativeTarget "CityExpertUITests" */;
+			buildPhases = (
+				E5E6611D1D0F8FDC007FD396 /* Sources */,
+				E5E6611E1D0F8FDC007FD396 /* Frameworks */,
+				E5E6611F1D0F8FDC007FD396 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E5E661231D0F8FDC007FD396 /* PBXTargetDependency */,
+			);
+			name = CityExpertUITests;
+			productName = CityExpertUITests;
+			productReference = E5E661211D0F8FDC007FD396 /* CityExpertUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E5E660F71D0F8FDC007FD396 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Zakariya Kassim";
+				TargetAttributes = {
+					E5E660FE1D0F8FDC007FD396 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = F3GD554ZXE;
+					};
+					E5E661151D0F8FDC007FD396 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = F3GD554ZXE;
+						TestTargetID = E5E660FE1D0F8FDC007FD396;
+					};
+					E5E661201D0F8FDC007FD396 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = F3GD554ZXE;
+						TestTargetID = E5E660FE1D0F8FDC007FD396;
+					};
+				};
+			};
+			buildConfigurationList = E5E660FA1D0F8FDC007FD396 /* Build configuration list for PBXProject "CityExpert" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E5E660F61D0F8FDC007FD396;
+			productRefGroup = E5E661001D0F8FDC007FD396 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E5E660FE1D0F8FDC007FD396 /* CityExpert */,
+				E5E661151D0F8FDC007FD396 /* CityExpertTests */,
+				E5E661201D0F8FDC007FD396 /* CityExpertUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E5E660FD1D0F8FDC007FD396 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5E661101D0F8FDC007FD396 /* LaunchScreen.storyboard in Resources */,
+				E5E6610D1D0F8FDC007FD396 /* Assets.xcassets in Resources */,
+				E5E661081D0F8FDC007FD396 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5E661141D0F8FDC007FD396 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5E6611F1D0F8FDC007FD396 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E5E660FB1D0F8FDC007FD396 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5E6610B1D0F8FDC007FD396 /* CityExpert.xcdatamodeld in Sources */,
+				E5E661051D0F8FDC007FD396 /* ViewController.swift in Sources */,
+				E5E661031D0F8FDC007FD396 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5E661121D0F8FDC007FD396 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5E6611B1D0F8FDC007FD396 /* CityExpertTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5E6611D1D0F8FDC007FD396 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5E661261D0F8FDC007FD396 /* CityExpertUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E5E661181D0F8FDC007FD396 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E5E660FE1D0F8FDC007FD396 /* CityExpert */;
+			targetProxy = E5E661171D0F8FDC007FD396 /* PBXContainerItemProxy */;
+		};
+		E5E661231D0F8FDC007FD396 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E5E660FE1D0F8FDC007FD396 /* CityExpert */;
+			targetProxy = E5E661221D0F8FDC007FD396 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E5E661061D0F8FDC007FD396 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E5E661071D0F8FDC007FD396 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E5E6610E1D0F8FDC007FD396 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E5E6610F1D0F8FDC007FD396 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E5E661281D0F8FDC007FD396 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E5E661291D0F8FDC007FD396 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E5E6612B1D0F8FDC007FD396 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = CityExpert/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = CityExpert.CityExpert;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E5E6612C1D0F8FDC007FD396 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = CityExpert/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = CityExpert.CityExpert;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E5E6612E1D0F8FDC007FD396 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = CityExpertTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = CityExpert.CityExpertTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CityExpert.app/CityExpert";
+			};
+			name = Debug;
+		};
+		E5E6612F1D0F8FDC007FD396 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = CityExpertTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = CityExpert.CityExpertTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CityExpert.app/CityExpert";
+			};
+			name = Release;
+		};
+		E5E661311D0F8FDC007FD396 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = CityExpertUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = CityExpert.CityExpertUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = CityExpert;
+			};
+			name = Debug;
+		};
+		E5E661321D0F8FDC007FD396 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = CityExpertUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = CityExpert.CityExpertUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = CityExpert;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E5E660FA1D0F8FDC007FD396 /* Build configuration list for PBXProject "CityExpert" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5E661281D0F8FDC007FD396 /* Debug */,
+				E5E661291D0F8FDC007FD396 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E5E6612A1D0F8FDC007FD396 /* Build configuration list for PBXNativeTarget "CityExpert" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5E6612B1D0F8FDC007FD396 /* Debug */,
+				E5E6612C1D0F8FDC007FD396 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E5E6612D1D0F8FDC007FD396 /* Build configuration list for PBXNativeTarget "CityExpertTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5E6612E1D0F8FDC007FD396 /* Debug */,
+				E5E6612F1D0F8FDC007FD396 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E5E661301D0F8FDC007FD396 /* Build configuration list for PBXNativeTarget "CityExpertUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5E661311D0F8FDC007FD396 /* Debug */,
+				E5E661321D0F8FDC007FD396 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E5E661091D0F8FDC007FD396 /* CityExpert.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E5E6610A1D0F8FDC007FD396 /* CityExpert.xcdatamodel */,
+			);
+			currentVersion = E5E6610A1D0F8FDC007FD396 /* CityExpert.xcdatamodel */;
+			path = CityExpert.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = E5E660F71D0F8FDC007FD396 /* Project object */;
+}
