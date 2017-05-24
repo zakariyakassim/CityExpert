@@ -13,8 +13,8 @@ import CoreData
 class  FavouriteStopsVC : UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
-
-       var prevView : UIView?
+    
+    var prevView : UIView?
     @IBOutlet weak var table: UITableView!
     
     var fetchedStops: [FavStops]!
@@ -22,10 +22,10 @@ class  FavouriteStopsVC : UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         self.table.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 70, right: 0)
+        self.table.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 70, right: 0)
         
         do{
-           // let fetch = NSFetchRequest(entityName: "FavStops")
+            // let fetch = NSFetchRequest(entityName: "FavStops")
             
             let fetch: NSFetchRequest<FavStops>
             if #available(iOS 10.0, OSX 10.12, *) {
@@ -34,10 +34,24 @@ class  FavouriteStopsVC : UIViewController, UITableViewDataSource, UITableViewDe
                 fetch = NSFetchRequest(entityName: "FavStops")
             }
             
-            fetchedStops = try self.managedObjectContext.fetch(fetch) 
+            fetchedStops = try self.managedObjectContext.fetch(fetch)
         } catch {
             fatalError("Failed to fetch: \(error)")
         }
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeRightToGoBack))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+        
+    }
+    
+    
+    func swipeRightToGoBack(sender:UISwipeGestureRecognizer) {
+
+        let currentViewController: UIViewController! = self.storyboard?.instantiateViewController(withIdentifier: "MainMenuContainerView")
+        currentViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        self.addChildViewController(currentViewController!)
+        addSubview(currentViewController!.view, toView: self.view)
         
     }
     
@@ -57,7 +71,7 @@ class  FavouriteStopsVC : UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = self.table.dequeueReusableCell(withIdentifier: "FavStopTableViewCell")! as!FavStopTableViewCell
-
+        
         
         cell.atcocode = fetchedStops[(indexPath as NSIndexPath).row].atcocode
         cell.stopName.setTitle(fetchedStops[(indexPath as NSIndexPath).row].name, for: UIControlState())
@@ -87,7 +101,7 @@ class  FavouriteStopsVC : UIViewController, UITableViewDataSource, UITableViewDe
         self.addChildViewController(currentViewController!)
         addSubview(currentViewController!.view, toView: self.view)
     }
-
+    
     @IBAction func stopsAndPlacesSegControll(_ sender: UISegmentedControl) {
         
         switch sender.selectedSegmentIndex
@@ -99,19 +113,19 @@ class  FavouriteStopsVC : UIViewController, UITableViewDataSource, UITableViewDe
             currentViewController.view.translatesAutoresizingMaskIntoConstraints = false
             self.addChildViewController(currentViewController!)
             addSubview(currentViewController!.view, toView: self.view)
-          
+            
         case 1:
             
             let currentViewController: UIViewController! = self.storyboard?.instantiateViewController(withIdentifier: "FavouritePlacesVC")
-
+            
             currentViewController.view.translatesAutoresizingMaskIntoConstraints = false
             self.addChildViewController(currentViewController!)
             addSubview(currentViewController!.view, toView: self.view)
-           
+            
         default:
             break;
         }
     }
-
+    
     
 }

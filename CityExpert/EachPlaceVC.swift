@@ -32,6 +32,7 @@ class EachPlaceVC: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var lblDistance: UILabel!
     
+    let VCU = ViewControllerUtils()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,8 +93,39 @@ class EachPlaceVC: UIViewController, CLLocationManagerDelegate {
         theMap.selectAnnotation(anotation, animated: true)
 
         
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeRightToGoBack))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
         
     }
+    
+    
+    func swipeRightToGoBack(sender:UISwipeGestureRecognizer) {
+        
+        if(fromFav){
+            
+            let currentViewController: UIViewController! = self.storyboard?.instantiateViewController(withIdentifier: "FavouritePlacesVC")
+            
+            currentViewController.view.translatesAutoresizingMaskIntoConstraints = false
+            self.addChildViewController(currentViewController!)
+            addSubview(currentViewController!.view, toView: self.view)
+            
+            
+        }else{
+            
+            let currentViewController: PlacesVC! = self.storyboard?.instantiateViewController(withIdentifier: "PlacesVC") as! PlacesVC
+            
+            currentViewController.type = place?.type
+            
+            currentViewController.view.translatesAutoresizingMaskIntoConstraints = false
+            self.addChildViewController(currentViewController!)
+            addSubview(currentViewController!.view, toView: self.view)
+            
+            
+        }
+        
+    }
+    
     
     
     @IBAction func favouriteAction(_ sender: UIBarButtonItem) {

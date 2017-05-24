@@ -8,32 +8,15 @@
 
 import UIKit
 import CoreLocation
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
-}
 
 
-class BusTimesContainerVC: UIViewController, UITabBarDelegate, UITableViewDataSource, CLLocationManagerDelegate {
+class BusTimesContainerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
    
        let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
     
         @IBOutlet weak var navigationTitle: UINavigationItem!
+    
+      let VCU = ViewControllerUtils()
     
 var busTimes = [BusTimes]()
     
@@ -49,7 +32,7 @@ var busTimes = [BusTimes]()
     var locationManager = CLLocationManager()
     var currentLocation = CLLocation()
 
-    @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -98,15 +81,44 @@ var busTimes = [BusTimes]()
         refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "Refreshing")
         refreshControl.addTarget(self, action: #selector(self.pullToRefreshData), for: UIControlEvents.valueChanged)
-        self.table.addSubview(refreshControl)
+        self.tableView.addSubview(refreshControl)
         
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeRightToGoBack))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        
+        
+    }
+    
+    
+    func swipeRightToGoBack(sender:UISwipeGestureRecognizer) {
+        
+        if(fromFav){
+            
+            let currentViewController: UIViewController! = self.storyboard?.instantiateViewController(withIdentifier: "FavouriteStopsVC")
+            
+            currentViewController.view.translatesAutoresizingMaskIntoConstraints = false
+            self.addChildViewController(currentViewController!)
+            addSubview(currentViewController!.view, toView: self.view)
+            
+            
+        }else{
+            
+            let currentViewController: UIViewController! = self.storyboard?.instantiateViewController(withIdentifier: "NearbyStopsContainerView")
+            currentViewController.view.translatesAutoresizingMaskIntoConstraints = false
+            self.addChildViewController(currentViewController!)
+            addSubview(currentViewController!.view, toView: self.view)
+            
+        }
         
     }
     
     func pullToRefreshData(_ refreshControl: UIRefreshControl) {
         self.busTimes.removeAll()
         self.getBusTimesFromURL("https://transportapi.com/v3/uk/bus/stop/"+atcocode!+"/live.json?app_id=03bf8009&app_key=d9307fd91b0247c607e098d5effedc97&group=route&nextbuses=no")
-        self.table.reloadData()
+        self.tableView.reloadData()
         refreshControl.endRefreshing()
     }
     
@@ -153,7 +165,7 @@ var busTimes = [BusTimes]()
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = self.table.dequeueReusableCell(withIdentifier: "BusTimesCell")! as! BusTimesTableViewCell
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "BusTimesCell")! as! BusTimesTableViewCell
         
         
         
@@ -175,7 +187,90 @@ var busTimes = [BusTimes]()
     }
     
     
-    /* func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        
+        
+        
+        
+        
+        let alertController = UIAlertController(title: nil, message: self.busTimes[(indexPath as NSIndexPath).row].line_name + " to " + self.busTimes[(indexPath as NSIndexPath).row].direction, preferredStyle: .actionSheet)
+        
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            // do nothing
+        }
+        
+        
+        alertController.addAction(cancelAction)
+        
+        /*  let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+         // ...
+         }
+         alertController.addAction(OKAction) */
+        
+        let deleteAction = UIAlertAction(title: "Reminder", style: .destructive) { (action) in
+            // print(action)
+            
+            
+           
+            
+            let currentViewController: CountdownTimerContainerVC! = self.storyboard?.instantiateViewController(withIdentifier: "CountdownTimerContainerView") as! CountdownTimerContainerVC
+            currentViewController.count = Int(self.busTimes[(indexPath as NSIndexPath).row].estimatedWait)!*60
+            currentViewController.busAndDestination = self.busTimes[(indexPath as NSIndexPath).row].line_name + " to " + self.busTimes[(indexPath as NSIndexPath).row].direction
+            
+            
+            currentViewController.stopName = self.stopName!
+            currentViewController.atcocode = self.atcocode!
+            currentViewController.stopLatitude = self.stopLatitude!
+            currentViewController.stopLongitude = self.stopLongitude!
+            currentViewController.stopDistance = self.stopDistance!
+            
+            currentViewController.view.translatesAutoresizingMaskIntoConstraints = false
+            self.addChildViewController(currentViewController!)
+            addSubview(currentViewController!.view, toView: self.view)
+            
+            
+            
+            
+            
+        }
+        alertController.addAction(deleteAction)
+        
+        self.present(alertController, animated: true) {
+            // ...
+        }
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+    }
+    
+    
+   /*  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+          //  objects.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        }
+    } */
+    
+    
+    
+    
+    
+   /*   func tableView(_ tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let more = UITableViewRowAction(style: .normal, title: "Reminder") { action, index in
             print("Reminder button tapped")
             
@@ -202,7 +297,7 @@ var busTimes = [BusTimes]()
     
     
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+   /* func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         // you need to implement this method too or you can't swipe to display the actions
         
         
@@ -242,7 +337,7 @@ var busTimes = [BusTimes]()
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // the cells you would like the actions to appear needs to be editable
         return true
-    }
+    } */
     
 
     
@@ -271,6 +366,7 @@ var busTimes = [BusTimes]()
     func getBusTimesFromURL(_ baseURL : String){
         
         
+        VCU.showActivityIndicator(uiView: self.view)
         
         let url = URL(string:baseURL)
         let request = URLRequest(url:url!)
@@ -353,9 +449,11 @@ var busTimes = [BusTimes]()
                 
                 DispatchQueue.main.async {
                     
-                    self.busTimes.sort(by: { Int($1.estimatedWait) > Int($0.estimatedWait) })
+                    self.busTimes.sort(by: { Int($1.estimatedWait)! > Int($0.estimatedWait)! })
                     
-                     self.table.reloadData()
+                     self.tableView.reloadData()
+                    
+                     self.VCU.hideActivityIndicator(uiView: self.view)
                 }
                 
             } else {
@@ -363,7 +461,7 @@ var busTimes = [BusTimes]()
                 print("There was an error")
             }
             
-        }) 
+        })
         
         task.resume()
         

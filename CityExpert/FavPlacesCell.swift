@@ -9,17 +9,8 @@
 import UIKit
 
 class FavPlacesCell: UITableViewCell {
-    
 
-        
-        
         @IBOutlet weak var name: UILabel!
-        
-        
         @IBOutlet weak var distance: UILabel!
-        
-
-
-    
-    
+  
 }

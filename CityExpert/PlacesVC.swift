@@ -33,7 +33,7 @@ class PlacesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CL
 
     var API_KEY = "AIzaSyBVz1dDxXIQij0wGw45AfIOiA2B8nZByn8";
     
-
+    let VCU = ViewControllerUtils()
     
     var places = [Place]()
     
@@ -87,6 +87,20 @@ class PlacesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CL
         refreshControl.addTarget(self, action: #selector(self.pullToRefreshData), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl)
         
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeRightToGoBack))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+        
+    }
+    
+    
+    func swipeRightToGoBack(sender:UISwipeGestureRecognizer) {
+        
+        let currentViewController: UIViewController! = self.storyboard?.instantiateViewController(withIdentifier: "PlacesTypeVC")
+        currentViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        self.addChildViewController(currentViewController!)
+        addSubview(currentViewController!.view, toView: self.view)
         
     }
     
@@ -181,6 +195,8 @@ class PlacesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CL
     
 
     func getNearestPlaces(_ type:String, lat:String, lng:String){
+        
+        VCU.showActivityIndicator(uiView: self.view)
 
         let url = URL(string:"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lng + "&radius=10000&types=" + type + "&key=" + API_KEY)
         
@@ -232,8 +248,8 @@ class PlacesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CL
                         theMap.addAnnotation(anotation)
                         
                     }
-
                     
+                   self.VCU.hideActivityIndicator(uiView: self.view)
                 }
                 
             } else {

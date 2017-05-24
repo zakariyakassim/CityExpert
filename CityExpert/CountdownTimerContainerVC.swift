@@ -8,25 +8,7 @@
 
 import UIKit
 import AVFoundation
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
 
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
-}
 
 
 class CountdownTimerContainerVC: UIViewController {
@@ -105,6 +87,8 @@ class CountdownTimerContainerVC: UIViewController {
     }
     
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -112,8 +96,18 @@ class CountdownTimerContainerVC: UIViewController {
         
         countDown.setTitle("", for: UIControlState())
         countDown.layer.borderColor = UIColor(rgba: "#E31833").cgColor
+       // btn1.layer.backgroundColor = UIColor.black.cgColor
       //  countDown.layer.borderWidth = 2
       //  countDown.layer.cornerRadius = 5
+        
+        
+        
+        
+       // let notificationCenter = NotificationCenter.default
+      //  notificationCenter.addObserver(self, selector: #selector(pushNotification), name: Notification.Name.UIApplicationWillResignActive, object: nil)
+        
+        
+       
         
         buttons.append(btn1)
         buttons.append(btn2)
@@ -133,7 +127,8 @@ class CountdownTimerContainerVC: UIViewController {
         
         for button in buttons{
 
-            button.layer.cornerRadius = 0.5 * button.bounds.size.width
+          //  button.layer.cornerRadius = 0.5 * button.bounds.size.width
+            button.layer.cornerRadius = 2
             button.addTarget(self, action: #selector(action), for: UIControlEvents.touchUpInside)
         }
         
@@ -143,16 +138,58 @@ class CountdownTimerContainerVC: UIViewController {
         
         
         
-        let notificationCenter = NotificationCenter.default
+      //  let notificationCenter = NotificationCenter.default
         
         //UIApplicationDidEnterBackgroundNotification & UIApplicationWillEnterForegroundNotification shouldn't be quoted
-        notificationCenter.addObserver(self, selector: #selector(didEnterBackground), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(didBecomeActive), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+       /* notificationCenter.addObserver(self, selector: #selector(didEnterBackground), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(pushNotification), name: NSNotification.Name.UIApplicationWillResignActive, object: nil) */
         
-        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeRightToGoBack))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
         
     }
     
+    
+    func swipeRightToGoBack(sender:UISwipeGestureRecognizer) {
+        
+        let currentViewController: BusTimesContainerVC! = self.storyboard?.instantiateViewController(withIdentifier: "BusTimesContainerView") as! BusTimesContainerVC
+        
+        currentViewController.stopName = self.stopName!
+        currentViewController.atcocode = self.atcocode!
+        currentViewController.stopLatitude = self.stopLatitude!
+        currentViewController.stopLongitude = self.stopLongitude!
+        currentViewController.stopDistance = self.stopDistance!
+        
+        currentViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        self.addChildViewController(currentViewController!)
+        addSubview(currentViewController!.view, toView: self.view)
+        
+    }
+        
+    
+    
+    
+    
+    func pushNotification() {
+        
+        print("Background mode")
+       // print(count!)
+       // print(selectedMin*60)
+       // print(count! - selectedMin*60)
+      /*  let notification = UILocalNotification()
+        notification.alertAction = "Go back to App"
+        notification.soundName = "Morse.aiff"
+        notification.alertBody = String(selectedMin) + " mins left."
+        notification.alertTitle = self.busAndDestination!
+        notification.fireDate = NSDate(timeIntervalSinceNow: TimeInterval(count! - (selectedMin*60))) as Date
+        UIApplication.shared.scheduleLocalNotification(notification) */
+        
+      
+        create(id: "zz", fireDate: NSDate(timeIntervalSinceNow: TimeInterval(count! - (selectedMin*60))), soundName: "Morse.aiff", alertTitle: self.busAndDestination!, alertBody: String(selectedMin) + " mins left.", alertAction: "Go back to App")
+        
+        
+    }
     
     
     func didEnterBackground() {
@@ -174,7 +211,7 @@ class CountdownTimerContainerVC: UIViewController {
         let minutes = count! / 60
         let seconds = count! % 60
         
-        if(count > 0) {
+        if(count! > 0) {
 
             countDown.setTitle(String(minutes) + ":" + String(seconds), for: UIControlState())
             count! = count! - 1
@@ -185,7 +222,7 @@ class CountdownTimerContainerVC: UIViewController {
         if (count == (selectedMin*60)-1){
             print("done")
             
-            playSound()
+           // playSound()
             
             timer.invalidate()
         }
@@ -212,6 +249,8 @@ class CountdownTimerContainerVC: UIViewController {
 
     func action(_ sender: UIButton){
         
+
+        
         for button in buttons{
             button.isEnabled = true
             button.layer.backgroundColor = UIColor(rgba: "#CC0033").cgColor
@@ -225,6 +264,96 @@ class CountdownTimerContainerVC: UIViewController {
         lblMessage.text = "Remind me in " + String(selectedMin) + " minutes."
         
         disableUnwantedKeys()
+        
+        
+        let alertController = UIAlertController(title: nil, message: "Remind me in " + String(selectedMin) + " minutes.", preferredStyle: .actionSheet)
+        
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            // do nothing
+        }
+        
+        
+        alertController.addAction(cancelAction)
+        
+
+        
+        let addAction = UIAlertAction(title: "Add to Notifications", style: .destructive) { (action) in
+            // print(action)
+            
+            LocalNotificationHelper.sharedInstance().cancelNotification(key: self.busAndDestination!)
+            
+            let userInfo = ["url" : "www.cityexpert.co.uk"]
+            LocalNotificationHelper.sharedInstance().scheduleNotificationWithKey(key: self.busAndDestination!, title: self.busAndDestination!, message: String(self.selectedMin) + " mins left.", date: NSDate(timeIntervalSinceNow: TimeInterval(self.count! - (self.selectedMin*60))), userInfo: userInfo as [NSObject : AnyObject]?)
+            
+
+            
+            
+            
+            let currentViewController: BusTimesContainerVC! = self.storyboard?.instantiateViewController(withIdentifier: "BusTimesContainerView") as! BusTimesContainerVC
+            
+            currentViewController.stopName = self.stopName!
+            currentViewController.atcocode = self.atcocode!
+            currentViewController.stopLatitude = self.stopLatitude!
+            currentViewController.stopLongitude = self.stopLongitude!
+            currentViewController.stopDistance = self.stopDistance!
+            
+            
+            
+            currentViewController.view.translatesAutoresizingMaskIntoConstraints = false
+            self.addChildViewController(currentViewController!)
+            addSubview(currentViewController!.view, toView: self.view)
+            
+        }
+        alertController.addAction(addAction)
+        
+        self.present(alertController, animated: true) {
+            // ...
+        }
+
+        
+        
+
+        
+        
+        
+        
+       // find(id: self.busAndDestination!)
+        
+      //  UIApplication.shared.cancelLocalNotification(find(id: self.busAndDestination!)!)
+        
+       // print("zaaaaaaaaaaaaaak " + String(describing: find(id: self.busAndDestination!)!))
+        
+     //   create(id: self.busAndDestination!, fireDate: NSDate(timeIntervalSinceNow: TimeInterval(count! - (selectedMin*60))), soundName: "Morse.aiff", alertTitle: self.busAndDestination!, alertBody: String(selectedMin) + " mins left.", alertAction: "Go back to App")
+        
+        
+        
+        
+      /*  let alertController = UIAlertController(title: "Background Notification", message: "Add this to notification center", preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            // ...
+        }
+        alertController.addAction(cancelAction)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            
+            let notification = UILocalNotification()
+            notification.alertAction = "Go back to App"
+            notification.soundName = "Morse.aiff"
+            notification.alertBody = self.busAndDestination!
+            notification.fireDate = NSDate(timeIntervalSinceNow: TimeInterval(self.count! - (self.selectedMin*60))) as Date
+            UIApplication.shared.scheduleLocalNotification(notification)
+            
+            
+        }
+        alertController.addAction(OKAction)
+        
+        self.present(alertController, animated: true) {
+            // ...
+        } */
+        
+        
         
     }
     

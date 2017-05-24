@@ -43,6 +43,20 @@ class FavouritePlacesVC: UIViewController, UITableViewDelegate, UITableViewDataS
         }
 
         
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeRightToGoBack))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+        
+    }
+    
+    
+    func swipeRightToGoBack(sender:UISwipeGestureRecognizer) {
+        
+        let currentViewController: UIViewController! = self.storyboard?.instantiateViewController(withIdentifier: "MainMenuContainerView")
+        currentViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        self.addChildViewController(currentViewController!)
+        addSubview(currentViewController!.view, toView: self.view)
+        
     }
     
     @IBAction func btnBack(_ sender: UIBarButtonItem) {

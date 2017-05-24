@@ -10,9 +10,5 @@ import UIKit
 
 class FavStopsCell: UITableViewCell {
     
-    
     @IBOutlet weak var name: UILabel!
-
-    
-    
 }

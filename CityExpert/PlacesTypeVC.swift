@@ -116,6 +116,21 @@ class PlacesTypeVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         super.viewDidLoad()
         let allAnnotations = theMap.annotations
         theMap.removeAnnotations(allAnnotations)
+    
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeRightToGoBack))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+        
+    }
+    
+    
+    func swipeRightToGoBack(sender:UISwipeGestureRecognizer) {
+        
+        let currentViewController: UIViewController! = self.storyboard?.instantiateViewController(withIdentifier: "MainMenuContainerView")
+        currentViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        self.addChildViewController(currentViewController!)
+        addSubview(currentViewController!.view, toView: self.view)
+        
     }
     
     

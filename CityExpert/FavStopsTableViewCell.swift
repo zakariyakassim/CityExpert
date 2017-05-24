@@ -127,7 +127,7 @@ class FavStopTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColle
                         
                       //  self.direction = self.direction + direction + ", "
                         
-                        print(estimatedWait)
+                      //  print(estimatedWait)
                         //print(best_departure_estimate)
 
                       /*  let dateFormatter = NSDateFormatter()

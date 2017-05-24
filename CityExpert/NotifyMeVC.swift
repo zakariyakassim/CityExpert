@@ -15,6 +15,8 @@ class NotifyMeVC : UIViewController, UITableViewDataSource, UITableViewDelegate,
     
     var player: AVAudioPlayer?
     
+     var timer = Timer()
+    
     @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var table: UITableView!
@@ -94,14 +96,72 @@ class NotifyMeVC : UIViewController, UITableViewDataSource, UITableViewDelegate,
       //  let lat = String(currentLocation.coordinate.latitude)
       //  let lng = String(currentLocation.coordinate.longitude)
 
-        
-        
-        
       //  loadOverlayForRegionWithLatitude(destinationLocation.coordinate.latitude, andLongitude: destinationLocation.coordinate.longitude, radius: 100)
         
         
-  
+         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
 
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeRightToGoBack))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+        
+    }
+    
+    
+    func swipeRightToGoBack(sender:UISwipeGestureRecognizer) {
+        
+        view.endEditing(true)
+        let currentViewController: UIViewController! = self.storyboard?.instantiateViewController(withIdentifier: "MainMenuContainerView")
+        currentViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        self.addChildViewController(currentViewController!)
+        addSubview(currentViewController!.view, toView: self.view)
+        
+    }
+    
+    func update(_ timer: Timer) {
+
+       print("yesyes")
+
+        
+        let distance:CLLocationDistance = self.currentLocation.distance(from: destinationLocation)
+        
+        print("its upadating location")
+        
+        // print(player?.playing)
+        
+        if (Int(distance) < Int(circleDistance)) {
+            print("its reached")
+            
+         //   let alertView = UIAlertController(title: "Notify Me", message: "Location is reached!!", preferredStyle: UIAlertControllerStyle.alert)
+            
+          //  alertView.addAction(<#T##action: UIAlertAction##UIAlertAction#>)
+            
+          //  self.present(alertView, animated: true, completion: nil)
+            
+          //  let myBool: Bool! = player!.isPlaying
+            
+          //  print(myBool!)
+            
+            LocalNotificationHelper.sharedInstance().cancelNotification(key: "cityexpertnotifyme")
+            
+            let userInfo = ["url" : "www.cityexpert.co.uk"]
+            LocalNotificationHelper.sharedInstance().scheduleNotificationWithKey(key: "cityexpertnotifyme", title: "Wake up!!", message: "You have reached the location.", seconds: 5, userInfo: userInfo as [NSObject : AnyObject]?)
+            
+           // if (!myBool) {
+                
+
+
+                
+               // AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+               // player!.prepareToPlay()
+              //  player!.play()
+        //    }
+            
+            // self.playSound()
+            
+        }else{
+            player?.stop()
+        }
         
     }
    

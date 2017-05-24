@@ -30,11 +30,29 @@ func addMap(_ view: UIView){
 func addContainerView(_ view: UIView){
     container.frame = CGRect(x: 0, y: view.frame.height/2.5, width: view.frame.width, height: view.frame.height - view.frame.height/2.5)
 
-    
-    
-    
+
     view.addSubview(container)
 
+}
+
+
+func addQuickMenuButton(view: UIView, button: UIButton){
+    
+   // var button = button
+    
+    let buttonWidth = 50
+    let buttonHeight = 50
+    
+    button.frame = CGRect(x: Int(theMap.bounds.width) - buttonHeight - 20, y: Int(theMap.bounds.height) - buttonHeight - 20 , width: buttonWidth, height: buttonHeight)
+    
+   // button.set
+   // button.backgroundColor = UIColor.red
+   // button.setTitle("=", for: .normal)
+   // button.layer.zPosition = 1;
+   // button.addTarget(self, action: #selector(buttonAction), forControlEvents: .TouchUpInside)
+    button.layer.cornerRadius = 0.5 * button.bounds.size.width
+    theMap.addSubview(button)
+    
 }
 
 

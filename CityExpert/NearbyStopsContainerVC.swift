@@ -18,10 +18,13 @@ class NearbyStopsContainerVC: UIViewController, UITableViewDelegate, UITableView
     var locationManager = CLLocationManager()
     var currentLocation = CLLocation()
     @IBOutlet weak var table: UITableView!
+    let VCU = ViewControllerUtils()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         let allAnnotations = theMap.annotations
         theMap.removeAnnotations(allAnnotations)
@@ -51,6 +54,23 @@ class NearbyStopsContainerVC: UIViewController, UITableViewDelegate, UITableView
         refreshControl.addTarget(self, action: #selector(self.pullToRefreshData), for: UIControlEvents.valueChanged)
         table.addSubview(refreshControl)
         
+        
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeRightToGoBack))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+        
+
+        
+    }
+    
+    
+    func swipeRightToGoBack(sender:UISwipeGestureRecognizer) {
+        
+        let currentViewController: UIViewController! = self.storyboard?.instantiateViewController(withIdentifier: "MainMenuContainerView")
+        currentViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        self.addChildViewController(currentViewController!)
+        addSubview(currentViewController!.view, toView: self.view)
         
     }
     
@@ -131,6 +151,15 @@ class NearbyStopsContainerVC: UIViewController, UITableViewDelegate, UITableView
 
     func getNearestStopsFromURL(_ baseURL : String){
         
+       // let parentView: UIViewController! = self.storyboard?.instantiateViewController(withIdentifier: "ParentView")
+        //parentView.view.translatesAutoresizingMaskIntoConstraints = false
+        //self.addChildViewController(parentView!)
+       
+        
+         VCU.showActivityIndicator(uiView: self.view)
+        
+       // VCU.showActivityIndicator(uiView: self.view)
+        
         print(baseURL)
         
         let url = URL(string:baseURL)
@@ -167,6 +196,10 @@ class NearbyStopsContainerVC: UIViewController, UITableViewDelegate, UITableView
                         anotation.subtitle = String(round( self.ConvertMetersToMiles(round(Double(x.distance)!))*10)/10 ) + " Miles"
                         
                       theMap.addAnnotation(anotation)
+                        
+              
+                        
+                        self.VCU.hideActivityIndicator(uiView: self.view)
                         
                     }
                     

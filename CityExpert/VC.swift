@@ -9,8 +9,9 @@
 import UIKit
 import CoreLocation
 
-class VC: UIViewController, CLLocationManagerDelegate{
+class VC: UIViewController, CLLocationManagerDelegate, UIPopoverPresentationControllerDelegate{
     
+    @IBOutlet weak var btnQuickMenu: UIButton!
     
   //  var circleOverlay = MKCircle()
    // var circleRenderer = MKCircleRenderer()
@@ -20,11 +21,22 @@ class VC: UIViewController, CLLocationManagerDelegate{
     var locationManager = CLLocationManager()
     var currentLocation = CLLocation()
     
+    
+    
+
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
+      /*  let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(pushNotification), name: Notification.Name.UIApplicationWillResignActive, object: nil) */
+        
+        btnQuickMenu.layer.zPosition = 1;
 
         addMap(self.view)
+        
+         addQuickMenuButton(view: self.view, button: btnQuickMenu)
         
         addContainerView(self.view)
         
@@ -77,6 +89,22 @@ class VC: UIViewController, CLLocationManagerDelegate{
         
         
     }
+    
+    
+    @IBAction func btnQuickMenu(_ sender: UIButton) {
+        
+
+        
+       // self.performSegue(withIdentifier: "quickMenuPopover", sender: self)
+        
+        theMap.setCenterCoordinate((locationManager.location?.coordinate)!, zoomLevel: 15, animated: true)
+        
+        print("quick menu pressed")
+        
+    }
+    
+
+    
     
   
     func routeMapDoubleTapSelector(_ sender: AnyObject) {
